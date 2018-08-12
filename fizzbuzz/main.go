@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func fizzBuzz(number int) string{
+func FizzBuzz(number int) string{
 		if number%3 == 0 && number % 5 == 0 {
 			return "FizzBuzz"
 		} else if number%3 == 0 {
@@ -17,6 +17,6 @@ func fizzBuzz(number int) string{
 
 func main() {
 	for i := 1; i <= 100 ; i++ {
-		fmt.Println(fizzBuzz(i))
+		fmt.Println(FizzBuzz(i))
 	}
 }
