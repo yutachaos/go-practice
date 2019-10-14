@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/yutachaos/go-practice/go-package/ex01/sample1"
+	"github.com/yutachaos/go-practice/go-package/varconst/sample1"
 )
 
 func main() {
