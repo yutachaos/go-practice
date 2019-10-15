@@ -8,10 +8,10 @@ import (
 
 func TestCount(t *testing.T) {
 	tests := []struct {
-		expect     int64
+		expect int64
 	}{
 		{
-			expect:     1000,
+			expect: 1000,
 		},
 	}
 	for _, test := range tests {

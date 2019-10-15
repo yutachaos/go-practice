@@ -1,10 +1,26 @@
-package multicpu_invalid
+package main
 
 import (
 	"fmt"
 	"runtime"
+	"sync"
 	"testing"
 )
+
+func count() int64 {
+
+	var count int64
+	var wg sync.WaitGroup
+	for i := 0; i < 1000; i++ {
+		wg.Add(1)
+		go func() {
+			count++
+			wg.Done()
+		}()
+	}
+	wg.Wait()
+	return count
+}
 
 func TestCount(t *testing.T) {
 	tests := []struct {
@@ -27,23 +43,8 @@ func TestCount(t *testing.T) {
 			GOMAXPROCS: 4,
 			expect:     1000,
 		},
-		{
-			GOMAXPROCS: 5,
-			expect:     1000,
-		},
-		{
-			GOMAXPROCS: 6,
-			expect:     1000,
-		},
-		{
-			GOMAXPROCS: 7,
-			expect:     1000,
-		},
-		{
-			GOMAXPROCS: 8,
-			expect:     1000,
-		},
 	}
+	fmt.Printf("Your CPUs: %d \n", runtime.NumCPU())
 	for _, test := range tests {
 		t.Run(fmt.Sprintf("GOMAXPROCS: %d", test.GOMAXPROCS), func(t *testing.T) {
 			runtime.GOMAXPROCS(test.GOMAXPROCS)

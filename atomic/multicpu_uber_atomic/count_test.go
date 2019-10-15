@@ -1,4 +1,4 @@
-package multicpu_invalid
+package multicpu_uber_atomic
 
 import (
 	"fmt"

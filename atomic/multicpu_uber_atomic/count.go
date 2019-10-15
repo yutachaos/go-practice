@@ -1,21 +1,21 @@
-package multicpu_invalid
+package multicpu_uber_atomic
 
 import (
+	"go.uber.org/atomic"
 	"sync"
-	"sync/atomic"
 )
 
 func count() int64 {
 
-	var count int64
+	count := atomic.NewInt64(0)
 	var wg sync.WaitGroup
 	for i := 0; i < 1000; i++ {
 		wg.Add(1)
 		go func() {
-			atomic.AddInt64(&count, 1)
+			count.Add(1)
 			wg.Done()
 		}()
 	}
 	wg.Wait()
-	return atomic.LoadInt64(&count)
+	return count.Load()
 }
