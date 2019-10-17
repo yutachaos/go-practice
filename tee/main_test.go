@@ -1,6 +1,7 @@
-package tee
+package tee_test
 
 import (
+	. "github.com/yutachaos/go-practice/tee"
 	"testing"
 )
 
