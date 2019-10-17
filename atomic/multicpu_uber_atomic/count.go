@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-func count() int64 {
+func Count() int64 {
 
 	count := atomic.NewInt64(0)
 	var wg sync.WaitGroup

@@ -1,7 +1,8 @@
-package multicpu_invalid
+package multicpu_test
 
 import (
 	"fmt"
+	"github.com/yutachaos/go-practice/atomic/multicpu"
 	"runtime"
 	"testing"
 )
@@ -44,10 +45,11 @@ func TestCount(t *testing.T) {
 			expect:     1000,
 		},
 	}
+	fmt.Printf("your CPUs: %d", runtime.NumCPU())
 	for _, test := range tests {
 		t.Run(fmt.Sprintf("GOMAXPROCS: %d", test.GOMAXPROCS), func(t *testing.T) {
 			runtime.GOMAXPROCS(test.GOMAXPROCS)
-			actual := count()
+			actual := multicpu.Count()
 			if actual != test.expect {
 				t.Errorf("Assert error failed actual: %d expext: %d GOMAXPROCS: %d", actual, test.expect, runtime.GOMAXPROCS(0))
 			}

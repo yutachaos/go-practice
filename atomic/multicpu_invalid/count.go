@@ -4,7 +4,7 @@ import (
 	"sync"
 )
 
-func count() int64 {
+func Count() int64 {
 
 	var count int64
 	var wg sync.WaitGroup

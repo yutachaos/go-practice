@@ -1,7 +1,8 @@
-package multicpu_uber_atomic
+package multicpu_uber_atomic_test
 
 import (
 	"fmt"
+	"github.com/yutachaos/go-practice/atomic/multicpu_uber_atomic"
 	"runtime"
 	"testing"
 )
@@ -47,7 +48,7 @@ func TestCount(t *testing.T) {
 	for _, test := range tests {
 		t.Run(fmt.Sprintf("GOMAXPROCS: %d", test.GOMAXPROCS), func(t *testing.T) {
 			runtime.GOMAXPROCS(test.GOMAXPROCS)
-			actual := count()
+			actual := multicpu_uber_atomic.Count()
 			if actual != test.expect {
 				t.Errorf("Assert error failed actual: %d expext: %d GOMAXPROCS: %d", actual, test.expect, runtime.GOMAXPROCS(0))
 			}
